@@ -1,0 +1,12 @@
+.Modal {
+  position: fixed;
+  z-index: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 600px) {
+  .Modal {
+    width: 500px;
+    left: calc(50% - 250px);
+  }
+}
