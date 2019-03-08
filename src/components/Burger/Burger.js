@@ -10,11 +10,14 @@ const burger = props => {
       });
     })
     .flat();
-  console.log(transformedIngredients);
   return (
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
-      {transformedIngredients.length === 0 ? <p>Please start adding ingredients</p> : transformedIngredients}
+      {transformedIngredients.length === 0 ? (
+        <p>Please start adding ingredients</p>
+      ) : (
+        transformedIngredients
+      )}
       <BurgerIngredient type="bread-bottom" />
     </div>
   );

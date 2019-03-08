@@ -11,8 +11,9 @@
 
 .OrderButton {
   padding: 5px;
+  margin-top: 5px;
   font: inherit;
-  border: 1px solid #aa6817;
+  border: 2px solid #aa6817;
   box-shadow: 2px 2px 2px #966909;
 }
 
@@ -41,5 +42,11 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@media (max-width: 499px) {
+  .BuildControls {
+    width: 100%;
   }
 }
