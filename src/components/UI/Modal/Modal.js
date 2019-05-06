@@ -6,7 +6,7 @@ class Modal extends Component {
   // only update if show property is changed
   shouldComponentUpdate(nextProps, nextState) {
     return (
-      nextProps.show != this.props.show || nextProps.children != this.children
+      nextProps.show !== this.props.show || nextProps.children !== this.children
     );
   }
 
