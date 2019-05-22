@@ -5,3 +5,5 @@ export {
 } from "./burgerBuilders";
 
 export { purchaseBurger, purchaseInit, fetchOrders } from "./orders";
+
+export { auth, logout } from "./auth";

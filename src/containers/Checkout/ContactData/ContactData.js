@@ -67,7 +67,7 @@ class ContactData extends Component {
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
     }
-    if (rules.minLength) {
+    if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
     }
     return isValid;
@@ -88,7 +88,7 @@ class ContactData extends Component {
       price: this.props.price,
       orderData: formData
     };
-    this.props.onOrderBurger(order);
+    this.props.onOrderBurger(order, this.props.token);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -149,14 +149,15 @@ const mapStateToProps = state => {
   return {
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
+    token: state.auth.token
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: orderData =>
-      dispatch(actionCreators.purchaseBurger(orderData))
+    onOrderBurger: (orderData, token) =>
+      dispatch(actionCreators.purchaseBurger(orderData, token))
   };
 };
 

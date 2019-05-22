@@ -11,8 +11,8 @@ export const removeIngredient = ingredientName => ({
   ingredientName: ingredientName
 });
 
-export const setIngredients = ingredients => ({
-  type: actionTypes.SET_INGREDIENTS,
+export const fetchIngredientsSuccess = ingredients => ({
+  type: actionTypes.FETCH_INGREDIENTS_SUCCESS,
   ingredients: ingredients
 });
 
@@ -24,7 +24,7 @@ export const initIngredients = () => {
   return dispatch => {
     axios
       .get("https://react-my-burger-216df.firebaseio.com/ingredients.json")
-      .then(response => dispatch(setIngredients(response.data)))
+      .then(response => dispatch(fetchIngredientsSuccess(response.data)))
       .catch(_ => dispatch(fetchIngredientsFailed()));
   };
 };
