@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Auth.css";
@@ -40,6 +41,12 @@ class Auth extends Component {
       }
     }
   };
+
+  componentDidMount() {
+    if (!this.props.buildingBurger && this.props.authRedictPath !== "/") {
+      this.props.onSetAuthRedirectPath("/");
+    }
+  }
 
   checkValidity(value, rules) {
     let isValid = true;
@@ -118,6 +125,9 @@ class Auth extends Component {
       <Spinner />
     ) : (
       <div className={classes.Auth}>
+        {this.props.isAuth ? (
+          <Redirect to={this.props.authRedirectPath} />
+        ) : null}
         {this.props.error ? <p>{this.props.error.message}</p> : null}
         <form onSubmit={this.submitHandler}>
           {form}
@@ -136,14 +146,19 @@ class Auth extends Component {
 const mapStateToProps = state => {
   return {
     loading: state.auth.loading,
-    error: state.auth.error
+    error: state.auth.error,
+    isAuth: state.auth.token !== null,
+    buildingBurger: state.burgerBuilder.building,
+    authRedirectPath: state.auth.authRedirectPath
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignup) =>
-      dispatch(actionCreators.auth(email, password, isSignup))
+      dispatch(actionCreators.auth(email, password, isSignup)),
+    onSetAuthRedirectPath: path =>
+      dispatch(actionCreators.setAuthRedirectPath(path))
   };
 };
 
