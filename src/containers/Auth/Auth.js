@@ -6,6 +6,7 @@ import classes from "./Auth.css";
 import * as actionCreators from "../../store/actions/index";
 import { connect } from "react-redux";
 import Spinner from "../../components/UI/Spinner/Spinner";
+import { checkValidity } from "../../shared/utility";
 
 class Auth extends Component {
   state = {
@@ -48,23 +49,6 @@ class Auth extends Component {
     }
   }
 
-  checkValidity(value, rules) {
-    let isValid = true;
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-    }
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-    }
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-    }
-    if (rules.isEmail) {
-      isValid = /^.+@.+$/.test(value) && isValid;
-    }
-    return isValid;
-  }
-
   inputChangeHandler = (event, inputIdentifier) => {
     const updatedSignupForm = {
       ...this.state.signupForm
@@ -73,7 +57,7 @@ class Auth extends Component {
       ...updatedSignupForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
+    updatedFormElement.valid = checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
