@@ -14,7 +14,7 @@ const burger = props => {
     <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
       {transformedIngredients.length === 0 ? (
-        <p>Please start adding ingredients</p>
+        <p>Please start adding ingredients!!!</p>
       ) : (
         transformedIngredients
       )}
