@@ -1,9 +1,22 @@
 export {
   addIngredient,
   removeIngredient,
-  initIngredients
+  initIngredients,
+  fetchIngredientsSuccess,
+  fetchIngredientsFailed
 } from "./burgerBuilders";
 
 export { purchaseBurger, purchaseInit, fetchOrders } from "./orders";
 
-export { auth, logout, setAuthRedirectPath, authCheckState } from "./auth";
+export {
+  auth,
+  authStart,
+  authUser,
+  authSuccess,
+  authFail,
+  checkAuthTimeout,
+  logout,
+  logoutSucceed,
+  setAuthRedirectPath,
+  authCheckState
+} from "./auth";
